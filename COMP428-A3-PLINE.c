@@ -65,7 +65,7 @@ int	taskid,	        /* task ID - also used as seed number */
 
 
     int pn = sqrt(numtasks);
-    if(!((pn * pn) == numtasks))
+    if((pn * pn) != numtasks)
     {
         if(taskid == MASTER)
             printf ("The number of processes must be a square number\n");
@@ -90,6 +90,7 @@ int	taskid,	        /* task ID - also used as seed number */
         {
             int c = fscanf(myFile, "%d\t", &input);
 
+            //To handle the no-link value placed by grapher
             if(c != 1)
             {
                 char word[16];
@@ -109,6 +110,7 @@ int	taskid,	        /* task ID - also used as seed number */
         {
             int c = fscanf(myFile, "%d", &inputValue[count]);
 
+            //To handle the no-link value placed by grapher
             if(c != 1)
             {
                 inputValue[count] = INT_MAX;
@@ -191,6 +193,7 @@ int	taskid,	        /* task ID - also used as seed number */
     MPI_Comm col_comm;
     MPI_Comm_split(MPI_COMM_WORLD, point[0], point[1], &col_comm);
 
+    //Still need to find best way to send column/rows for pipelining
     int k, x, y;
     for(k = 0; k < n; k++)
     {

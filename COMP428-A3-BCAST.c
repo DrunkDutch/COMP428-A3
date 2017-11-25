@@ -65,7 +65,7 @@ int	taskid,	        /* task ID - also used as seed number */
 
 
     int pn = sqrt(numtasks);
-    if(!((pn * pn) == numtasks))
+    if((pn * pn) != numtasks)
     {
         if(taskid == MASTER)
             printf ("The number of processes must be a square number\n");
@@ -90,6 +90,7 @@ int	taskid,	        /* task ID - also used as seed number */
         {
             int c = fscanf(myFile, "%d\t", &input);
 
+            //To handle the no-link value placed by grapher
             if(c != 1)
             {
                 char word[16];
@@ -109,6 +110,7 @@ int	taskid,	        /* task ID - also used as seed number */
         {
             int c = fscanf(myFile, "%d", &inputValue[count]);
 
+            //To handle the no-link value placed by grapher
             if(c != 1)
             {
                 inputValue[count] = INT_MAX;
